@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 set -e
 
 usage() {
@@ -38,6 +37,11 @@ main() {
             ;;
     esac
 
+    if [ -z "${@##*--verbose*}" ]
+    then
+        VERBOSE=true;
+    fi
+
     local workingdir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
     local subcmdFile="$workingdir/git-semver-$subcommand.sh"
     if [ ! -e $subcmdFile ]; then
@@ -46,8 +50,13 @@ main() {
 
     source $subcmdFile
 
-    if [ ! type "main_$subcommand" ]; then
-        usage; exit 1
+    #if [ ! type "main_$subcommand" ]; then
+    #    usage; exit 1
+    #fi
+
+    if [ $VERBOSE ]
+    then   
+        echo "Executing subcommand $subcommand from $subcmdFile.";
     fi
 
     main_$subcommand "$@"
