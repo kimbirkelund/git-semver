@@ -1,4 +1,4 @@
-Describe Invoke-GitDescribe.ps1 {
+Describe New-GitRelease {
     It "Needs to have real tests" {
         $true | Should be $true
     }
