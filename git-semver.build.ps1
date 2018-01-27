@@ -93,7 +93,11 @@ task ImportCompiledModule -if (Test-Path -Path $script:PsmPath) {
 task Pester {
     $resultFile = "{0}\testResults{1}.xml" -f $script:OutPutFolder, (Get-date -Format 'yyyyMMdd_hhmmss')
     $testFolder = Join-Path -Path $script:ModuleRoot -ChildPath 'Tests\*'
-    Invoke-Pester -Path $testFolder -OutputFile $resultFile -OutputFormat NUnitxml
+    Invoke-Pester `
+        -Path $testFolder `
+        -OutputFile $resultFile `
+        -OutputFormat NUnitxml `
+        -PesterOption @{ IncludeVSCodeMarker = $true }
 }
 
 task GenerateGraph -if (Test-Path -Path 'Graphs') {
