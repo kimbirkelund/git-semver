@@ -16,14 +16,6 @@ function New-GitRelease
 
     $ErrorActionPreference = "Stop";
     Set-StrictMode -Version Latest;
-
-    Push-Location $PSScriptRoot;
-    try
-    {
-    }
-    finally
-    {
-        Pop-Location;
-    }
+    AssertInRepository
 }
 

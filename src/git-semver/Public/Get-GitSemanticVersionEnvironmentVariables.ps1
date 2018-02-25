@@ -1,6 +1,6 @@
 function Get-GitSemanticVersionEnvironmentVariables
 {
-  <#
+    <#
     .Synopsis
       Short description
     .DESCRIPTION
@@ -14,6 +14,9 @@ function Get-GitSemanticVersionEnvironmentVariables
 
     )
 
+    $ErrorActionPreference = "Stop";
+    Set-StrictMode -Version Latest;
+    AssertInRepository
 
-
+    return @{}
 }

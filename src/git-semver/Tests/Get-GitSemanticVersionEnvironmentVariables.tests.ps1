@@ -1,5 +1,5 @@
 Describe Get-GitSemanticVersionEnvironmentVariables {
-    It "Needs to have real tests" {
-        $true | Should be $true
+    It "Should return list of hashtable with environment variables" {
+        Get-GitSemanticVersionEnvironmentVariables | Should -BeOfType [hashtable]
     }
 }
