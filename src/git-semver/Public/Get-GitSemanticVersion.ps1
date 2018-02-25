@@ -1,19 +1,30 @@
 function Get-GitSemanticVersion
 {
-  <#
-    .Synopsis
-      Short description
+    <#
+    .SYNOPSIS
+      Gets the semantic version of the repository.
     .DESCRIPTION
-      Long description
+      Gets the semantic version as computed by this module for the repository at the specified path (default to current directory).
+      Parameters allows for getting the version in other commons formats.
     .EXAMPLE
       Example of how to use this cmdlet
-  #>
+    #>
     [CmdletBinding()]
-    Param
+    PARAM
     (
-
+        [switch]$DotnetAssemblyVersion
     )
 
+    $ErrorActionPreference = "Stop";
+    Set-StrictMode -Version Latest;
+    AssertInRepository
 
-    "1.0.0"
+    $describe = Invoke-GitDescribe;
+    Write-Verbose "Invoke-GitDescribe => $describe";
+
+    if (!$describe)
+    {
+        Write-Verbose "Empty describe, returning default value.";
+        return (Get-ConfigValue -DefaultVersion);
+    }
 }
