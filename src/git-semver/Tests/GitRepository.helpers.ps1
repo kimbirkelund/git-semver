@@ -14,9 +14,9 @@ function safegit
         }
 
         $exit = $LASTEXITCODE
-        if ($exit -gt 0)
+        if ($exit -ne 0)
         {
-            Write-Error (Get-Content $path).ToString()
+            Write-Error (Get-Content $path -Raw)
         }
         else
         {
@@ -41,6 +41,8 @@ function CreateGitRepositoryAndGoToIt()
 
     safegit init;
     safegit checkout -b master;
+    safegit config user.name "dummy";
+    safegit config user.email "dummy@dummy.dummy";
 
     MakeEmptyCommit -Message "Initial commit." > $null;
 
