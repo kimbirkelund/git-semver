@@ -97,6 +97,7 @@ task Pester {
         -Path $testFolder `
         -OutputFile $resultFile `
         -OutputFormat NUnitxml `
+        -Show Fails, Summary `
         -PesterOption @{ IncludeVSCodeMarker = $true }
 }
 
