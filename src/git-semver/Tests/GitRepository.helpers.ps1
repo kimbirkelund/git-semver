@@ -50,6 +50,14 @@ function CreateGitRepositoryAndGoToIt()
     return $repositoryRoot;
 }
 
+function GoToNonRepositoryPath()
+{
+    $nonRepositoryRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([guid]::NewGuid());
+
+    New-Item -ItemType Directory $nonRepositoryRoot;
+    Set-Location $nonRepositoryRoot;
+}
+
 function MakeEmptyCommit
 {
     PARAM (
