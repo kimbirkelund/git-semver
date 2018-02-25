@@ -46,7 +46,7 @@ function CreateGitRepositoryAndGoToIt()
 
     MakeEmptyCommit -Message "Initial commit." > $null;
 
-    Write-Host "Created empty repository at $repositoryRoot";
+    Write-Verbose "Created empty repository at $repositoryRoot";
     return $repositoryRoot;
 }
 
